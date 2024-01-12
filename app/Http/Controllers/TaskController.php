@@ -19,6 +19,7 @@ class TaskController extends Controller
     {
         $tasks = QueryBuilder::for(Task::class)
             ->allowedFilters('is_done')
+            ->allowedSorts(['created_at', 'id'])
             ->paginate();
         return new TaskCollection($tasks);
     }
