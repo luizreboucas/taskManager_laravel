@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task>
@@ -18,7 +19,8 @@ class TaskFactory extends Factory
     {
         return [
             'nome'=> $this->faker->sentence(),
-            'is_done' => false
+            'is_done' => false,
+            'creator_id' => User::factory()
         ];
     }
 }
