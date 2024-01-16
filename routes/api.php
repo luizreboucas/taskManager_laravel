@@ -20,5 +20,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('/tasks/done', [TaskController::class, 'doneTasks'] );
-Route::apiResource('/tasks', TaskController::class);
+
+Route::post('/register', [AuthController::class, 'register']);
+
+Route::middleware('auth:sanctum')->group(function (){
+    Route::apiResource('/tasks', TaskController::class);
+});
+
+
 

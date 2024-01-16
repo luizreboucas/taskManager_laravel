@@ -12,6 +12,8 @@ use App\Http\Services\TaskService;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Spatie\QueryBuilder\QueryBuilder;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -29,7 +31,7 @@ class TaskController extends Controller
 
         $validated = $request->validated();
 
-        $task = Task::create($validated);
+        $task = Auth::user()->tasks()->create($validated);
 
         return new TaskResource($task);
     }
