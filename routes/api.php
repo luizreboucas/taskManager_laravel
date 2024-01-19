@@ -26,14 +26,13 @@ Route::post('/register', [AuthController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function (){
     Route::apiResource('/tasks', TaskController::class);
-});
-Route::middleware('auth:sanctum')->group(function(){
     Route::apiResource('/projects', ProjectController::class)->only([
         'index',
         'store',
         'update'
     ]);
 });
+
 
 
 

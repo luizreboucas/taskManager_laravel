@@ -14,7 +14,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        return new ProjectCollection(Project::all());
+        return new ProjectCollection(Project::query()->where('creator_id', Auth::id()));
     }
 
     public function store(StoreProject $request)

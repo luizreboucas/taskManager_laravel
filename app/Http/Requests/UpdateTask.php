@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class UpdateTask extends FormRequest
 {
@@ -23,7 +25,14 @@ class UpdateTask extends FormRequest
     {
         return [
             'nome'=>'sometimes',
-            'is_done'=> 'sometimes'
+            'is_done'=> 'sometimes',
+            'project_id'=> [
+                'nullable', 
+                Rule::exists('projects', 'id')->where(function ($query)
+                {
+                    $query->where('creator_id', Auth::id());
+                })
+            ]
         ];
     }
 }
