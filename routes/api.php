@@ -29,7 +29,8 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::apiResource('/projects', ProjectController::class)->only([
         'index',
         'store',
-        'update'
+        'update',
+        'show'
     ]);
 });
 

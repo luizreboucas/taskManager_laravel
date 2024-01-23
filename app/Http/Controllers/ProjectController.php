@@ -14,7 +14,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        return new ProjectCollection(Project::query()->where('creator_id', Auth::id()));
+        return new ProjectCollection(Project::query()->where('creator_id', Auth::id())->get());
     }
 
     public function store(StoreProject $request)
@@ -27,6 +27,11 @@ class ProjectController extends Controller
         {
             return new ProjectResource($project);
         }
+    }
+
+    public function show(Request $request, Project $project)
+    {
+        return new ProjectResource($project);
     }
 
     public function update(Request $request, Project $project)
