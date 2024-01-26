@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->boolean('is_done')->default(false);
-            $table->foreignId('creator_id')->constrained('users');
+            $table->foreignId('creator_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('project_id')->nullable()->constrained('projects')->nullOnDelete();
             $table->timestamps();
         });
     }

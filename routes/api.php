@@ -30,7 +30,8 @@ Route::middleware('auth:sanctum')->group(function (){
         'index',
         'store',
         'update',
-        'show'
+        'show',
+        'destroy'
     ]);
 });
 
